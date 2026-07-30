@@ -1,0 +1,1 @@
+"""MuseumSCAT research package."""

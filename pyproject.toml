@@ -1,0 +1,18 @@
+[project]
+name = "museumscat"
+version = "0.1.0"
+description = "Modal research workflow for the MuseumSCAT Kaggle competition"
+requires-python = ">=3.12"
+dependencies = [
+  "modal>=1.0.0",
+  "pandas>=2.2",
+  "pillow>=11.0",
+  "rapidfuzz>=3.0",
+]
+
+[tool.uv]
+package = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -1,0 +1,10 @@
+__pycache__/
+.venv/
+.pytest_cache/
+.DS_Store
+data/
+artifacts/
+*.csv
+*.jsonl
+*.log
+.modal/
