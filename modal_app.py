@@ -21,7 +21,7 @@ image = (
         "pymupdf==1.27.2.2", "psutil>=7.0", "matplotlib>=3.10",
         "huggingface_hub>=0.35", "kaggle>=1.8",
     )
-    .add_local_python_source("museumscat")
+    .add_local_python_source("src")
 )
 volume = modal.Volume.from_name("museumscat-research", create_if_missing=True)
 secrets = modal.Secret.from_name("museumscat-secrets", required=False)
@@ -65,9 +65,9 @@ def prepare():
 def microcv(n_samples: int = 32):
     _download_data()
     import pandas as pd
-    from museumscat.src.baseline import infer_image
-    from museumscat.src.metrics import aurc, ned
-    from museumscat.src.parse_ocr import parse_ocr
+    from src.baseline import infer_image
+    from src.metrics import aurc, ned
+    from src.parse_ocr import parse_ocr
     tokenizer, model = _load_model()
     train = pd.read_csv(Path(DATA_DIR) / "train.csv").head(n_samples)
     predictions, risks, confidences = [], [], []
@@ -92,7 +92,7 @@ def microcv(n_samples: int = 32):
 @app.function(image=image, gpu="A100-80GB", volumes={"/vol": volume}, secrets=[secrets], timeout=60 * 60 * 12)
 def baseline(limit: int | None = None):
     _download_data()
-    from museumscat.src.baseline import run_baseline
+    from src.baseline import run_baseline
     tokenizer, model = _load_model()
     out = run_baseline(model, tokenizer, DATA_DIR, ARTIFACT_DIR, limit=limit)
     volume.commit()
