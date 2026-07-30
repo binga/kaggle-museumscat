@@ -17,6 +17,8 @@ image = (
     .pip_install(
         "torch==2.10.0", "torchvision==0.25.0", "transformers==4.57.1",
         "Pillow==12.1.1", "pandas>=2.2", "rapidfuzz>=3.0",
+        "einops==0.8.2", "addict==2.4.0", "easydict==1.13",
+        "pymupdf==1.27.2.2", "psutil>=7.0", "matplotlib>=3.10",
         "huggingface_hub>=0.35", "kaggle>=1.8",
     )
     .add_local_python_source("museumscat")
